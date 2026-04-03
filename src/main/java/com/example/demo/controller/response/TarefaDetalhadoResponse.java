@@ -1,23 +1,23 @@
 package com.example.demo.controller.response;
 
 public class TarefaDetalhadoResponse {
-    private Long id;
+    private String id;
     private String titulo;
     private String status;
     private String descricao;
 
-    public TarefaDetalhadoResponse(Long id, String titulo, String status, String descricao) {
+    public TarefaDetalhadoResponse(String id, String titulo, String status, String descricao) {
         this.id = id;
         this.titulo = titulo;
         this.status = status;
         this.descricao = descricao;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -5,6 +5,8 @@ import com.example.demo.controller.response.TarefaDetalhadoResponse;
 import com.example.demo.controller.response.TarefaResponse;
 import com.example.demo.entity.Tarefa;
 
+import java.util.UUID;
+
 public class TarefaMapper {
 
     private TarefaMapper() {}
@@ -14,7 +16,9 @@ public class TarefaMapper {
     }
 
     public static Tarefa toEntity(TarefaRequest request) {
-        return new Tarefa(request.getTitulo(), request.getStatus(), request.getDescricao());
+        Tarefa tarefa = new Tarefa(request.getTitulo(), request.getStatus(), request.getDescricao());
+        tarefa.setId(UUID.randomUUID().toString());
+        return tarefa;
     }
 
     public static TarefaDetalhadoResponse toResponseDetalhado(Tarefa tarefa) {

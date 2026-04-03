@@ -1,20 +1,18 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.SQLRestriction;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
-@Entity
-@SQLRestriction("ativo")
+@RedisHash("Tarefa")
 public class Tarefa {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String titulo;
     private String status;
     private String descricao;
     private boolean ativo;
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @Indexed
     private Usuario usuario;
 
     public Tarefa(String titulo, String status, String descricao) {
@@ -27,11 +25,11 @@ public class Tarefa {
     public Tarefa() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

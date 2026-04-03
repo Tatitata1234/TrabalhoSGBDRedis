@@ -35,7 +35,7 @@ public class UsuarioService implements UserDetailsService {
         return UsuarioMapper.toResponse(usuario);
     }
 
-    public UsuarioDetalhadoResponse detalhar(Long id) {
+    public UsuarioDetalhadoResponse detalhar(String id) {
         Optional<Usuario> usuario = repository.findById(id);
 
         if (usuario.isEmpty()) {
@@ -45,7 +45,7 @@ public class UsuarioService implements UserDetailsService {
         return UsuarioMapper.toResponseDetalhado(usuario.get());
     }
 
-    public UsuarioResponse atualizar(UsuarioRequest request, Long id) {
+    public UsuarioResponse atualizar(UsuarioRequest request, String id) {
         Optional<Usuario> usuarioOp = repository.findById(id);
 
         if (usuarioOp.isEmpty()) {
@@ -64,7 +64,7 @@ public class UsuarioService implements UserDetailsService {
         return UsuarioMapper.toResponse(usuario);
     }
 
-    public UsuarioResponse deletar(Long id) {
+    public UsuarioResponse deletar(String id) {
         Optional<Usuario> usuarioOp = repository.findById(id);
 
         if (usuarioOp.isEmpty()) {

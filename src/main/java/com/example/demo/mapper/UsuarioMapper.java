@@ -5,13 +5,17 @@ import com.example.demo.controller.response.UsuarioDetalhadoResponse;
 import com.example.demo.controller.response.UsuarioResponse;
 import com.example.demo.entity.Usuario;
 
+import java.util.UUID;
+
 public class UsuarioMapper {
 
     private UsuarioMapper() {
     }
 
     public static Usuario toEntity(UsuarioRequest request) {
-        return new Usuario(request.getNome(), request.getNickname(), request.getSenha(), request.getIdade());
+        Usuario usuario = new Usuario(request.getNome(), request.getNickname(), request.getSenha(), request.getIdade());
+        usuario.setId(UUID.randomUUID().toString());
+        return usuario;
     }
 
     public static UsuarioResponse toResponse(Usuario usuario) {

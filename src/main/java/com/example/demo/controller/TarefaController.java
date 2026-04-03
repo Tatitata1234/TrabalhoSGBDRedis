@@ -39,7 +39,7 @@ public class TarefaController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtém tarefa", description = "Busca uma tarefa pelo id")
-    public ResponseEntity<TarefaDetalhadoResponse> detalhar(@PathVariable Long id) {
+    public ResponseEntity<TarefaDetalhadoResponse> detalhar(@PathVariable String id) {
         try {
             TarefaDetalhadoResponse response = service.detalhar(id);
             return ResponseEntity.ok(response);
@@ -51,7 +51,7 @@ public class TarefaController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Atualiza tarefa", description = "Atualiza uma tarefa pelo id e request")
-    public ResponseEntity<TarefaDetalhadoResponse> atualizar(@RequestBody TarefaRequest request, @PathVariable Long id) {
+    public ResponseEntity<TarefaDetalhadoResponse> atualizar(@RequestBody TarefaRequest request, @PathVariable String id) {
         try {
             TarefaDetalhadoResponse response = service.atualizar(request, id);
             return ResponseEntity.ok(response);
@@ -63,7 +63,7 @@ public class TarefaController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Deleta tarefa", description = "Deleta uma tarefa pelo id")
-    public ResponseEntity<TarefaResponse> deletar(@PathVariable Long id) {
+    public ResponseEntity<TarefaResponse> deletar(@PathVariable String id) {
         try {
             TarefaResponse response = service.deletar(id);
             return ResponseEntity.ok(response);
@@ -75,7 +75,7 @@ public class TarefaController {
 
     @GetMapping
     @Operation(summary = "Obtém tarefas do usuário", description = "Obtém as tarefas pelo um id do usuário")
-    public ResponseEntity<List<TarefaDetalhadoResponse>> listarPorUsuario(@RequestParam Long assignedTo) {
+    public ResponseEntity<List<TarefaDetalhadoResponse>> listarPorUsuario(@RequestParam String assignedTo) {
         try {
             List<TarefaDetalhadoResponse> responses = service.listarPorUsuario(assignedTo);
             return ResponseEntity.ok(responses);

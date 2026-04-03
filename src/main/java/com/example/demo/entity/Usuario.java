@@ -1,24 +1,24 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.SQLRestriction;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 import java.util.List;
 
-@Entity
-@SQLRestriction("ativo")
+@RedisHash("Usuario")
 public class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String nome;
     private String nickname;
     private String senha;
     private int idade;
     private boolean ativo;
 
-    @OneToMany(mappedBy = "usuario")
-    private List<Tarefa> tarefas;
+    @Indexed
+    private List<String> tarefasIds;
 
     public Usuario(String nome, String nickname, String senha, int idade) {
         this.nome = nome;
@@ -31,11 +31,11 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -79,11 +79,11 @@ public class Usuario {
         this.ativo = ativo;
     }
 
-    public List<Tarefa> getTarefas() {
-        return tarefas;
+    public List<String> getTarefasIds() {
+        return tarefasIds;
     }
 
-    public void setTarefas(List<Tarefa> tarefas) {
-        this.tarefas = tarefas;
+    public void setTarefasIds(List<String> tarefasIds) {
+        this.tarefasIds = tarefasIds;
     }
 }

@@ -3,7 +3,6 @@ package com.example.demo.service;
 import com.example.demo.controller.request.UsuarioRequest;
 import com.example.demo.controller.response.UsuarioDetalhadoResponse;
 import com.example.demo.controller.response.UsuarioResponse;
-import com.example.demo.entity.Tarefa;
 import com.example.demo.entity.Usuario;
 import com.example.demo.exception.UsuarioJaExisteException;
 import com.example.demo.exception.UsuarioNaoExisteException;
@@ -19,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.junit.jupiter.api.Assertions.*;
@@ -44,15 +44,17 @@ class UsuarioServiceTest {
             @Override
             public Usuario answer(InvocationOnMock invocationOnMock) throws Throwable {
                 Usuario arg = invocationOnMock.getArgument(0);
-                arg.setId(1L);
-                return null;
+                if (arg.getId() == null) {
+                    arg.setId(UUID.randomUUID().toString());
+                }
+                return arg;
             }
         });
 
         UsuarioRequest req = new UsuarioRequest("a", "a", "a", 20);
         UsuarioResponse resp = this.service.criar(req);
 
-        assertEquals(1L, resp.getId());
+        assertNotNull(resp.getId());
         verify(this.mockRepository).findByNickname(any());
         verify(this.mockRepository).save(any());
     }
@@ -71,9 +73,10 @@ class UsuarioServiceTest {
     @Test
     void detalharHappyPath() {
         Usuario user = new Usuario("a", "a", "a", 20);
+        user.setId(UUID.randomUUID().toString());
         when(this.mockRepository.findById(any())).thenReturn(Optional.of(user));
 
-        UsuarioDetalhadoResponse resp = this.service.detalhar(0L);
+        UsuarioDetalhadoResponse resp = this.service.detalhar(user.getId());
 
         verify(this.mockRepository).findById(any());
         assertEquals(resp.getNickname(), user.getNickname());
@@ -85,17 +88,18 @@ class UsuarioServiceTest {
     void detalharUserIsEmpty() {
         when(this.mockRepository.findById(any())).thenReturn(Optional.empty());
 
-        assertThrows(UsuarioNaoExisteException.class, () -> { this.service.detalhar(0L); });
+        assertThrows(UsuarioNaoExisteException.class, () -> { this.service.detalhar(UUID.randomUUID().toString()); });
         verify(this.mockRepository).findById(any());
     }
 
     @Test
     void atualizarHappyPath() {
         Usuario user = new Usuario("a", "a", "a", 20);
+        user.setId(UUID.randomUUID().toString());
         when(this.mockRepository.findById(any())).thenReturn(Optional.of(user));
 
         UsuarioRequest req = new UsuarioRequest("a", "a", "a", 21);
-        this.service.atualizar(req, 0L);
+        this.service.atualizar(req, user.getId());
         verify(this.mockRepository).findById(any());
         verify(this.mockRepository).save(any());
     }
@@ -105,16 +109,17 @@ class UsuarioServiceTest {
         when(this.mockRepository.findById(any())).thenReturn(Optional.empty());
 
         UsuarioRequest req = new UsuarioRequest("a", "a", "a", 21);
-        assertThrows(UsuarioNaoExisteException.class, () -> { this.service.atualizar(req, 0L); });
+        assertThrows(UsuarioNaoExisteException.class, () -> { this.service.atualizar(req, UUID.randomUUID().toString()); });
         verify(this.mockRepository).findById(any());
     }
 
     @Test
     void deletarHappyPath() {
         Usuario user = new Usuario("a", "a", "a", 20);
+        user.setId(UUID.randomUUID().toString());
         when(this.mockRepository.findById(any())).thenReturn(Optional.of(user));
 
-        this.service.deletar(0L);
+        this.service.deletar(user.getId());
         verify(this.mockRepository).findById(any());
         verify(this.mockRepository).save(any());
     }
@@ -123,7 +128,7 @@ class UsuarioServiceTest {
     void deletarUserIsEmpty() {
         when(this.mockRepository.findById(any())).thenReturn(Optional.empty());
 
-        assertThrows(UsuarioNaoExisteException.class, () ->{ this.service.deletar(0L); });
+        assertThrows(UsuarioNaoExisteException.class, () -> { this.service.deletar(UUID.randomUUID().toString()); });
         verify(this.mockRepository).findById(any());
     }
 }

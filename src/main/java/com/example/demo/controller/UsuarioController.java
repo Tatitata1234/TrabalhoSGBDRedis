@@ -35,7 +35,7 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtém usuário", description = "Busca um usuário pelo id")
-    public ResponseEntity<UsuarioDetalhadoResponse> detalhar(@PathVariable Long id) {
+    public ResponseEntity<UsuarioDetalhadoResponse> detalhar(@PathVariable String id) {
         try {
             UsuarioDetalhadoResponse response = service.detalhar(id);
             return ResponseEntity.ok(response);
@@ -47,7 +47,7 @@ public class UsuarioController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Atualiza usuário", description = "Atualiza um usuário pelo id e request")
-    public ResponseEntity<UsuarioResponse> atualizar(@RequestBody UsuarioRequest request, @PathVariable Long id) {
+    public ResponseEntity<UsuarioResponse> atualizar(@RequestBody UsuarioRequest request, @PathVariable String id) {
         try {
             UsuarioResponse response = service.atualizar(request, id);
             return ResponseEntity.ok(response);
@@ -59,7 +59,7 @@ public class UsuarioController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Deleta usuário", description = "Deleta um usuário pelo id")
-    public ResponseEntity<UsuarioResponse> deletar(@PathVariable Long id) {
+    public ResponseEntity<UsuarioResponse> deletar(@PathVariable String id) {
         try {
             UsuarioResponse response = service.deletar(id);
             return ResponseEntity.ok(response);

@@ -47,7 +47,7 @@ public class TarefaService {
         return TarefaMapper.toResponse(tarefa);
     }
 
-    public TarefaDetalhadoResponse detalhar(Long id) {
+    public TarefaDetalhadoResponse detalhar(String id) {
         Optional<Tarefa> tarefa = repository.findById(id);
 
         if (tarefa.isEmpty()) {
@@ -57,7 +57,7 @@ public class TarefaService {
         return TarefaMapper.toResponseDetalhado(tarefa.get());
     }
 
-    public TarefaDetalhadoResponse atualizar(TarefaRequest request, Long id) {
+    public TarefaDetalhadoResponse atualizar(TarefaRequest request, String id) {
         Optional<Tarefa> tarefaOp = repository.findById(id);
 
         if (tarefaOp.isEmpty()) {
@@ -75,7 +75,7 @@ public class TarefaService {
         return TarefaMapper.toResponseDetalhado(tarefa);
     }
 
-    public TarefaResponse deletar(Long id) {
+    public TarefaResponse deletar(String id) {
         Optional<Tarefa> tarefaOp = repository.findById(id);
 
         if (tarefaOp.isEmpty()) {
@@ -91,7 +91,7 @@ public class TarefaService {
         return TarefaMapper.toResponse(tarefa);
     }
 
-    public List<TarefaDetalhadoResponse> listarPorUsuario(Long userId) {
+    public List<TarefaDetalhadoResponse> listarPorUsuario(String userId) {
         Optional<Usuario> usuario = usuarioRepository.findById(userId);
 
         if (usuario.isEmpty()) {
