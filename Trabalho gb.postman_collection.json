@@ -1,0 +1,498 @@
+{
+	"info": {
+		"_postman_id": "d3dbc1a5-30fe-4517-9a34-8fed07ac7a23",
+		"name": "Trabalho gb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33597189"
+	},
+	"item": [
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Criar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "usuario",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token1}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Kelly\",\r\n    \"nickname\": \"kellyLinda\",\r\n    \"senha\" : \"123\",\r\n    \"idade\": 24\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "usuario",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token1}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Thais\",\r\n    \"nickname\": \"tatitata12345\",\r\n    \"senha\" : \"123\",\r\n    \"idade\": 24\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletar",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "usuario",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token1}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"users",
+								"2"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detalhar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "usuario",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token1}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tarefa",
+			"item": [
+				{
+					"name": "Criar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "usuario",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token1}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Dormirqq\",\r\n    \"status\": \"fazendo\",\r\n    \"descricao\" : \"dormir zzzz\",\r\n    \"userId\": 1\r\n    \r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/tasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "usuario",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token1}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Dormir\",\r\n    \"status\": \"fazendo\",\r\n    \"descricao\" : \"dormir yyyyy\",\r\n    \"userId\": 1\r\n}\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/tasks/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"tasks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "usuario",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token1}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/tasks/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"tasks",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detalhar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "usuario",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token1}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/tasks/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"tasks",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar por usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is within an acceptable range\", function () {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate the response schema and required fields\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData).to.have.property('tasks').that.is.an('array');\r",
+									"\r",
+									"  responseData.tasks.forEach(function(task) {\r",
+									"    pm.expect(task).to.have.property('id').that.is.a('number');\r",
+									"    pm.expect(task).to.have.property('title').that.is.a('string');\r",
+									"    pm.expect(task).to.have.property('description').that.is.a('string');\r",
+									"    pm.expect(task).to.have.property('assignedTo').that.is.a('number');\r",
+									"    pm.expect(task).to.have.property('status').that.is.a('string');\r",
+									"  });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Tasks array is present and contains expected number of elements\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.tasks).to.exist;\r",
+									"    pm.expect(responseData.tasks).to.be.an('array');\r",
+									"    pm.expect(responseData.tasks).to.have.lengthOf.at.least(1);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"AssignedTo field in each task matches the expected value\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('array');\r",
+									"    responseData.forEach(function(task) {\r",
+									"        pm.expect(task.assignedTo).to.equal(1);\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "usuario",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token1}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/tasks?assignedTo=45",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "assignedTo",
+									"value": "45"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Autenticação",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Supondo que o token está no corpo da resposta como { \"token\": \"abc123\" }\r",
+									"let response = pm.response.json();\r",
+									"pm.environment.set(\"token1\", response.token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Thais\",\r\n    \"nickname\": \"tatitata1234\",\r\n    \"senha\" : \"123\",\r\n    \"idade\": 24\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registrar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Thais\",\r\n    \"nickname\": \"tatitata1234\",\r\n    \"senha\" : \"123\",\r\n    \"idade\": 24\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/auth/registrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"auth",
+								"registrar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
