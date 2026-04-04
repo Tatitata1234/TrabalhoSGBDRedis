@@ -7,13 +7,13 @@ import org.springframework.data.redis.core.index.Indexed;
 @RedisHash("Tarefa")
 public class Tarefa {
     @Id
+    @Indexed
     private String id;
+    private Usuario usuario;
     private String titulo;
     private String status;
     private String descricao;
     private boolean ativo;
-    @Indexed
-    private Usuario usuario;
 
     public Tarefa(String titulo, String status, String descricao) {
         this.titulo = titulo;

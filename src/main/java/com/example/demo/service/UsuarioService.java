@@ -36,7 +36,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
     public UsuarioDetalhadoResponse detalhar(String id) {
-        Optional<Usuario> usuario = repository.findById(id);
+        Optional<Usuario> usuario = repository.findByIdAndAtivoIsTrue(id);
 
         if (usuario.isEmpty()) {
             throw new UsuarioNaoExisteException(USUARIO_NAO_EXISTE);
@@ -46,7 +46,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
     public UsuarioResponse atualizar(UsuarioRequest request, String id) {
-        Optional<Usuario> usuarioOp = repository.findById(id);
+        Optional<Usuario> usuarioOp = repository.findByIdAndAtivoIsTrue(id);
 
         if (usuarioOp.isEmpty()) {
             throw new UsuarioNaoExisteException(USUARIO_NAO_EXISTE);
@@ -65,7 +65,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
     public UsuarioResponse deletar(String id) {
-        Optional<Usuario> usuarioOp = repository.findById(id);
+        Optional<Usuario> usuarioOp = repository.findByIdAndAtivoIsTrue(id);
 
         if (usuarioOp.isEmpty()) {
             throw new UsuarioNaoExisteException(USUARIO_NAO_EXISTE);

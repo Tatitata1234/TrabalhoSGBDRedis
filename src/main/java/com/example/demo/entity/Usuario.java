@@ -10,6 +10,7 @@ import java.util.List;
 @RedisHash("Usuario")
 public class Usuario {
     @Id
+    @Indexed
     private String id;
     private String nome;
     private String nickname;
@@ -17,7 +18,6 @@ public class Usuario {
     private int idade;
     private boolean ativo;
 
-    @Indexed
     private List<String> tarefasIds;
 
     public Usuario(String nome, String nickname, String senha, int idade) {
