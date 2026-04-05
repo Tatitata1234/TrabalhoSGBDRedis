@@ -9,7 +9,8 @@ public class Tarefa {
     @Id
     @Indexed
     private String id;
-    private Usuario usuario;
+    @Indexed
+    private String usuarioId;
     private String titulo;
     private String status;
     private String descricao;
@@ -65,11 +66,11 @@ public class Tarefa {
         this.ativo = ativo;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuario(String usuarioId) {
+        this.usuarioId = usuarioId;
     }
 }

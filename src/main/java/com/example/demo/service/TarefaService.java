@@ -36,19 +36,21 @@ public class TarefaService {
             throw new TarefaJaExisteException("Tarefa já existe!");
         }
         Optional<Usuario> usuario = usuarioRepository.findById(request.getUserId());
+        usuario = usuario.filter(Usuario::isAtivo);
 
         if (usuario.isEmpty()) {
             throw new UsuarioNaoExisteException(USUARIO_NAO_EXISTE);
         }
 
         Tarefa tarefa = TarefaMapper.toEntity(request);
-        tarefa.setUsuario(usuario.get());
+        tarefa.setUsuario(usuario.get().getId());
         repository.save(tarefa);
         return TarefaMapper.toResponse(tarefa);
     }
 
     public TarefaDetalhadoResponse detalhar(String id) {
         Optional<Tarefa> tarefa = repository.findById(id);
+        tarefa = tarefa.filter(Tarefa::isAtivo);
 
         if (tarefa.isEmpty()) {
             throw new TarefaNaoExisteException(TAREFA_NAO_EXISTE);
@@ -59,6 +61,7 @@ public class TarefaService {
 
     public TarefaDetalhadoResponse atualizar(TarefaRequest request, String id) {
         Optional<Tarefa> tarefaOp = repository.findById(id);
+        tarefaOp = tarefaOp.filter(Tarefa::isAtivo);
 
         if (tarefaOp.isEmpty()) {
             throw new TarefaNaoExisteException(TAREFA_NAO_EXISTE);
@@ -77,6 +80,7 @@ public class TarefaService {
 
     public TarefaResponse deletar(String id) {
         Optional<Tarefa> tarefaOp = repository.findById(id);
+        tarefaOp = tarefaOp.filter(Tarefa::isAtivo);
 
         if (tarefaOp.isEmpty()) {
             throw new TarefaNaoExisteException(TAREFA_NAO_EXISTE);
@@ -93,12 +97,14 @@ public class TarefaService {
 
     public List<TarefaDetalhadoResponse> listarPorUsuario(String userId) {
         Optional<Usuario> usuario = usuarioRepository.findById(userId);
+        usuario = usuario.filter(Usuario::isAtivo);
 
         if (usuario.isEmpty()) {
             throw new UsuarioNaoExisteException(USUARIO_NAO_EXISTE);
         }
 
         List<Tarefa> tarefas = repository.findByUsuarioId(usuario.get().getId());
+        tarefas = tarefas.stream().filter(Tarefa::isAtivo).toList();
 
         return tarefas.stream().map(TarefaMapper::toResponseDetalhado).toList();
     }

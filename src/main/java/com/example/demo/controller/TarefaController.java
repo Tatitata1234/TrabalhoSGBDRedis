@@ -73,9 +73,9 @@ public class TarefaController {
         }
     }
 
-    @GetMapping
+    @GetMapping("list/{assignedTo}")
     @Operation(summary = "Obtém tarefas do usuário", description = "Obtém as tarefas pelo um id do usuário")
-    public ResponseEntity<List<TarefaDetalhadoResponse>> listarPorUsuario(@RequestParam String assignedTo) {
+    public ResponseEntity<List<TarefaDetalhadoResponse>> listarPorUsuario(@PathVariable String assignedTo) {
         try {
             List<TarefaDetalhadoResponse> responses = service.listarPorUsuario(assignedTo);
             return ResponseEntity.ok(responses);
